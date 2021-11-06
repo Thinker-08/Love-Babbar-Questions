@@ -24,6 +24,6 @@ int main()
             sum=0;
         }
     }
-    cout<<maxi;;
+    cout<<maxi;
     return 0;
 }
