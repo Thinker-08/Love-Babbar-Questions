@@ -1,12 +1,8 @@
-#include<bits/stdc++.h>
-#define fast ios_base::sync_with_stdio(false); cin.tie(NULL);cout.tie(NULL)
-#define ll long long
-using namespace std;
-#define vi vector<int>
-#define vvl vector<vector<ll>>
-#define vl vector<ll>
-#define rep(i,a,b) for(ll i=a;i<b;i++)
-#define newline cout<<'\n'
+// { Driver Code Starts
+#include <bits/stdc++.h> 
+using namespace std; 
+
+ // } Driver Code Ends
 class Solution
 {
 public:
@@ -34,11 +30,11 @@ int main()
     cin>>t;
     while(t--)
     {
-        int n;
-        cin>>n;
-        Solution ob;
-        cout <<ob.countFriendsPairings(n); 
-        cout<<endl;
+    	int n;
+    	cin>>n;
+    	Solution ob;
+    	cout <<ob.countFriendsPairings(n); 
+    	cout<<endl;
     }
 } 
   // } Driver Code Ends
