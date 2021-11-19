@@ -18,25 +18,11 @@ struct Tree
         right = NULL;
     }
 };
-int height(Tree* head)
+int height(Tree* node)
 {
-    if(head==NULL)
-    {
+    if(node==NULL)
         return 0;
-    }
-    else
-    {
-        int l = height(head->left);
-        int r = height(head->right);
-        if(l>r)
-        {
-            return(l+1);
-        }
-        else
-        {
-            return (r+1);
-        }
-    }
+    return max(height(node->left),height(node->right))+1;
 }
 int main()
 {

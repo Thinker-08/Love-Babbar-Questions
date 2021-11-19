@@ -36,6 +36,7 @@ void fun(Tree* head)
         v.push_back(q.front()->data);
         q.pop();
     }
+    reverse(v.begin(),v.end());
     rep(i,0,v.size())
     {
         cout<<v[i]<<" ";
