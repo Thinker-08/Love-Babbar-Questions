@@ -56,7 +56,6 @@ class Solution
     }
 };
 
-
 int main()
  {
     long long t;
