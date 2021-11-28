@@ -10,46 +10,37 @@ using namespace std;
 class Solution{
 public:
     int minValue(string s, int k){
+        map<char,int> mp;
+        for(int i=0;i<s.length();i++)
+        {
+            mp[s[i]]++;
+        }
         vector<int> v;
-        sort(s.begin(),s.end());
-        int j=1,l=0;
-        for(int i=1;i<s.size();i++)
+        for(auto it=mp.begin();it!=mp.end();it++)
+            v.push_back((*it).second);
+        priority_queue<int> pq;
+        for(int i=0;i<v.size();i++)
         {
-            if(s[i]==s[i-1])
+            pq.push(v[i]);
+        }
+        while(k!=0)
+        {
+            if(pq.top()>=1)
             {
-                j++;
+                int temp=pq.top();
+                pq.pop();
+                temp--;
+                k--;
+                pq.push(temp);
             }
-            else{
-                v.push_back(j);
-                j=1;
-            }
         }
-        v.push_back(j);
-        sort(v.begin(),v.end());
-        j=v.size()-1;
-        while(k>0)
+        int count=0;
+        while(!pq.empty())
         {
-            if(v[j]==v[j-1])
-            {
-                j--;
-                continue;
-            }
-            v[j]-=1;
-            k-=(v.size()-j);
+            count=count+pq.top()*pq.top();
+            pq.pop();
         }
-        for(int i=0;i<j;i++)
-        {
-            l+=(v[i]*v[i]);
-        }
-        if(k==0)
-        {
-            l+=((v.size()-j)*(v[j]*v[j]));
-        }
-        else{
-            l=l+(-1*k)*((v[j]+1)*(v[j]+1));
-            l=l+(v.size()-j+k)*(v[j]*v[j]);
-        }
-        return l;
+        return count;
     }
 };
 
