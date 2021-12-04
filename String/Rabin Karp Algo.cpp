@@ -3,44 +3,42 @@
 using namespace std;
 
 
- // } Driver Code Ends
-class Solution
+ class Solution
 {
     public:
-        vector <int> search(string pat, string txt)
+        vector <int> search(string pat, string s)
         {
-            int d=256;
-            vector<int>v;
-            int m=pat.length(),n=txt.length(),q=101;
-            int h=1;
-            for(int i=0;i<m-1;i++){
-                h=(h*d)%q;
+            vector<int> ans;
+    vector<long long> powers(1e5+7,0);
+    powers[0]=1;
+    for(int i=1;i<1e5+7;i++)
+    {
+        powers[i]=(powers[i-1]*27)%1000000007;
+    }
+    vector<long long> hash(s.size()+1,0);
+    for(int i=0;i<s.size();i++)
+    {
+        hash[i+1]=(hash[i]+((s[i]-'a'+1)*powers[i]))%1000000007;
+    }
+    long long temp=0;
+    for(int i=0;i<pat.length();i++)
+    {
+        temp=(temp+((pat[i]-'a'+1)*powers[i]))%1000000007;
+    }   
+    for(int i=0;i+pat.length()-1<s.length();i++)
+    {
+        long long cur=0;
+        cur=(hash[i+pat.length()]-hash[i]+1000000007)%1000000007;
+        if(cur==(temp*powers[i])%1000000007)
+            ans.push_back(i+1);
+    }
+            if(ans.empty())
+            {
+                ans.push_back(-1);
+                return ans;
             }
-            int p=0,t=0;
-            for(int i=0;i<m;i++){
-               p=(d*p+pat[i])%q;
-               t=(d*t+txt[i])%q;
-            }
-            for(int i=0;i<=n-m;i++){
-                if(p==t){
-                    int j=0;
-                    for(j=0;j<m;j++){
-                        if(pat[j]!=txt[i+j])
-                          break;
-                    }
-                    if(j==m)
-                      v.push_back(i+1);
-                }
-                if(i<n-m)
-                {
-                    t=(d*(t-txt[i]*h)+txt[i+m])%q;
-                    if(t<0)
-                      t=t+q;
-                }
-            }
-            if(v.empty())
-               v.push_back(-1);
-          return v; 
+            else
+                return ans;
         }
      
 };
