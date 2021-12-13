@@ -31,55 +31,32 @@ int main() {
 
 
 vector<long long> printFirstNegativeInteger(long long int A[],long long int N, long long int K) {
+    queue<int> q;
     vector<long long> ans;
-    queue<pair<long long,long long>> q;
-    for(long long i=0;i<N;i++)
+    for(int i=0,j=0;i<N-K+1 and j<N;)
     {
-        if(A[i]<0)
-            q.push(make_pair(A[i],i));
-    }
-    queue<long long> values_queue;
-    for(long long i=0;i<K;i++)
-    {
-        values_queue.push(A[i]);
-    }
-    if(q.front().second==0)
-    {
-        ans.push_back(q.front().first);
-        q.pop();
-    }
-    else
-    {
-        if(q.front().second>0 && q.front().second<K)
+        if(A[j]<0)
+            q.push(j);
+        if(j-i+1<K)
         {
-            ans.push_back(q.front().first);
+            j++;
         }
         else
         {
-            ans.push_back(0);
-        }
-    }
-    values_queue.pop();
-    for(long long i=K;i<N;i++)
-    {
-        values_queue.push(A[i]);
-        if(q.front().second==i-K+1)
-        {
-            ans.push_back(q.front().first);
-            q.pop();
-        }
-        else
-        {
-            if(q.front().second>i-K+1 && q.front().second<i+1)
+            if(j-i+1==K)
             {
-                ans.push_back(q.front().first);
-            }
-            else
-            {
-                ans.push_back(0);
+                if(q.empty())
+                    ans.push_back(0);
+                else
+                {
+                    ans.push_back(A[q.front()]);
+                }
+                while(!q.empty() and q.front()<=j-K+1)
+                    q.pop();
+                j++;
+                i++;
             }
         }
-        values_queue.pop();
     }
     return ans;
  }
