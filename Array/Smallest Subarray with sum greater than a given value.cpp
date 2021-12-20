@@ -10,35 +10,37 @@ using namespace std;
 #define MOD 1e9+7
 int minSubArrayLen(int target, vector<int>& nums) 
 {
-    int minlen=INT_MAX,sum=0,i=0,j=0;
-    while(i<nums.size() and j<nums.size())
+    int ans=nums.size()+1,i=0,j=0,sum=0;
+    while(j<nums.size())
     {
         sum=sum+nums[j];
         if(sum<target)
-        {
             j++;
-        }
         else
         {
-            minlen=min(minlen,j-i+1);
             while(sum>=target)
             {
-                minlen=min(minlen,j-i+1);
+                ans=min(ans,j-i+1);
                 sum=sum-nums[i];
                 i++;
             }
             j++;
         }
     }
-    return minlen!=INT_MAX?minlen:0;
+    if(ans==nums.size()+1)
+        return 0;
+    else
+        return ans;
 }
 int main()
 {
+    fast;
     int n,target;
     cin>>n>>target;
-    int arr[n];
+    vector<int> v(n);
     rep(i,0,n)
-        cin>>arr[i];
-    int ans=minSubArrayLen(target,arr);
+        cin>>v[i];
+    int ans=minSubArrayLen(target,v);
     cout<<ans;
+    return 0;
 }
