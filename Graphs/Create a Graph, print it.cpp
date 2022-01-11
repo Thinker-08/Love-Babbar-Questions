@@ -1,9 +1,4 @@
-#include"stdafx.h"
-#include<iostream>
-#include<map>
-#include<list>
-#include<queue>
-#include<set>
+#include<bits/stdc++.h>
 using namespace std;
 template<typename T>
 class graph {
