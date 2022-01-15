@@ -31,7 +31,7 @@ public:
 	        if(!vis[i])
 	            check(adj,vis,color,i,1);   
 	    }
-	    if(ans)
+	    if(ans==1)
 	        return true;
 	    else
 	        return false;
