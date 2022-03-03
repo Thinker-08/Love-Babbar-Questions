@@ -110,19 +110,19 @@ Tree* deleteT(Tree* head,int val)
         else
         {
             Tree* temp = head;
-        Tree* cur = head->right;
-        while (cur->left != NULL)
-        {
-            temp = cur;
-            cur = cur->left;
-        }
-        if (temp != head)
-            temp->left = cur->right;
-        else
-            temp->right = cur->right;
-        head->data = cur->data;
-        delete cur;
-        return head;
+            Tree* cur = head->right;
+            while (cur->left != NULL)
+            {
+                temp = cur;
+                cur = cur->left;
+            }
+            if (temp != head)
+                temp->left = cur->right;
+            else
+                temp->right = cur->right;
+            head->data = cur->data;
+            delete cur;
+            return head;
         }
     }
 }
