@@ -60,7 +60,6 @@ struct Node {
 class Solution
 {
     public:
-    //Function to add two numbers represented by linked list.
     Node* reverse(Node* head)
     {
         Node* cur=head;
